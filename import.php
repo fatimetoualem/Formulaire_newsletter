@@ -18,19 +18,20 @@ $pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$pdoStatement = $pdo->prepare('INSERT INTO subscribers (first_name, name, email) VALUES (?,?,?)');
+$pdoStatement = $pdo->prepare('INSERT INTO subscribers (first_name, name, email, created_on) VALUES (?,?,?,?)');
 
 
 while($row = fgetcsv($file)){
  
-    $first_name = $row[0];
+    $first_name = ucwords($row[0]);
     $name = ucwords($row[1]);
     $email = $row[2];
+    $date = new DateTime();
+    $datefrm = $date->format('d-m-Y H:i:s');
 
-    $first_name = strtolower($first_name);
-    $first_name = ucwords($first_name);
+    $email = str_replace(" ","", $email);
 
-    $pdoStatement->execute([$first_name, $name, $emai]);
+    $pdoStatement->execute([$first_name, $name, $emai, $datefrm]);
 }
 
 echo 'Import terminé!';

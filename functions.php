@@ -49,7 +49,7 @@ function addSubscriber(string $email, string $first_name, string $name, int $ori
 
     // Insertion de l'email dans la table subscribers
     $sql = 'INSERT INTO subscribers
-            (email, first_name, name, origine_id, creeLe) 
+            (email, first_name, name, origine_id, created_on) 
             VALUES (?,?,?,?, NOW())';
 
     $query = $pdo->prepare($sql);

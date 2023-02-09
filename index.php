@@ -18,6 +18,8 @@ if (!empty($_POST)) {
     $email = trim($_POST['email']);
     $firt_name = trim($_POST['first_name']);
     $name = trim($_POST['name']);
+    $firt_name = ucwords(strtolower($firt_name), " -");
+    $name = ucwords(strtolower($name), " -");
 
     // On récupère l'origine
     $originSelected = $_POST['origin'];
