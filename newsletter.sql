@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 13, 2023 at 10:02 AM
+-- Generation Time: Feb 13, 2023 at 03:29 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -85,15 +85,10 @@ CREATE TABLE `subscribers` (
 --
 
 INSERT INTO `subscribers` (`id`, `created_on`, `email`, `first_name`, `name`, `origine_id`) VALUES
-(87, '2023-02-10 13:04:40', 'alfred.dupont@gmail.com', 'Alfred', 'Dupont', NULL),
-(89, '2023-02-10 13:04:40', 'SarahLAMINE@gmail.com', 'Sarah', 'LAMINE', NULL),
-(91, '2023-02-10 23:19:58', 'fatimetoualem@gmail.com', 'Fatimetou', 'Zeyad', 5),
-(95, '2023-02-13 10:03:24', 'fa@gmail.com', 'Mohamed', 'Fati', 5),
-(96, '2023-02-13 10:12:54', 'fatim@gmail.com', 'Mohamed', 'Cheikha', 5),
-(97, '2023-02-13 10:13:37', 'fatima@gmail.com', 'Fatimetou', 'Alem', 5),
-(98, '2023-02-13 10:24:05', 'fatimet@gmail.com', 'Mohamed', 'Fati', 5),
-(99, '2023-02-13 11:00:25', 'aicha@gmail.com', 'Aicha', 'Hanene', 5),
-(100, '2023-02-13 11:00:53', 'aichahanene@gmail.com', 'Aichetou', 'Meden', 5);
+(113, '2023-02-13 15:27:55', 'alfred.dupont@gmail.com', 'Alfred', 'Dupont', NULL),
+(114, '2023-02-13 15:27:55', 'b.lav@hotmail.fr', 'Bertrand', 'Lavoisier', NULL),
+(115, '2023-02-13 15:27:55', 'SarahLAMINE@gmail.com', 'Sarah', 'LAMINE', NULL),
+(116, '2023-02-13 15:27:55', 'mo78@laposte.net', 'Mohamed', 'Ben Salam', NULL);
 
 --
 -- Indexes for dumped tables
@@ -138,7 +133,7 @@ ALTER TABLE `origines`
 -- AUTO_INCREMENT for table `subscribers`
 --
 ALTER TABLE `subscribers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- Constraints for dumped tables

@@ -1,15 +1,17 @@
 <?php
 
-// session_start();    
+session_start();    
 
-// if(!empty($_POST)){
-//     $_SESSION["autoriser"] = "true";
-//     header("location:".$_SERVER["PHP_SELF"]);
-//     exit;
-// }
-// if(!isset($_SESSION["autoriser"])){
-//     session_destroy();
-// }
+if(!empty($_POST)){
+    $_SESSION["autoriser"] = "true";
+    header("location:".$_SERVER["PHP_SELF"]);
+    
+    exit;
+}
+if(isset($_SESSION["autoriser"])){
+    session_destroy();
+    header("location:index.php");
+}
 
 
 // Inclusion des dépendances

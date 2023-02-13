@@ -26,14 +26,14 @@ while($row = fgetcsv($file)){
     $first_name = ucwords($row[0]);
     $name = ucwords($row[1]);
     $email = $row[2];
-    var_dump($email);
-    $date = new DateTime();
-    $datefrm = $date->format('Y-m-d H:i:s');
+
+    $created_on = new DateTime();
+    $created_on = $created_on->format("Y-m-d H:i:s");
 
     $email = str_replace(" ","", $email);
 
     if(validemail($email) != true){
-        $pdoStatement->execute([$first_name, $name, $email, $datefrm]);
+        $pdoStatement->execute([$first_name, $name, $email, $created_on]);
     }else{
         echo"Cette mail est déjà dans la BDD";
     }
