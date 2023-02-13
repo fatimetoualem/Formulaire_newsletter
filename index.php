@@ -1,5 +1,26 @@
 <?php
 
+session_start();    
+
+if(!empty($_POST)){
+    $_SESSION["autoriser"] = "true";
+    header("location:".$_SERVER["PHP_SELF"]);
+    exit;
+}
+if(!isset($_SESSION["autoriser"])){
+    session_destroy();
+}
+
+// if (!empty($_POST)) {
+// 	$_SESSION["formulaire_envoye"] = $_POST;
+// 	header("Location: ".$_SERVER["PHP_SELF"]);
+// 	exit;
+// }
+
+// if (isset($_SESSION["formulaire_envoye"])) {
+// 	$_POST = $_SESSION["formulaire_envoye"];
+// 	unset($_SESSION["formulaire_envoye"]);
+// }
 
 // Inclusion des dépendances
 require 'config.php';
@@ -21,12 +42,19 @@ if (!empty($_POST)) {
     $firt_name = ucwords(strtolower($firt_name), " -");
     $name = ucwords(strtolower($name), " -");
 
+    $checkbox = $_POST["checkbox"];
+
+
     // On récupère l'origine
     $originSelected = $_POST['origin'];
 
     // Validation 
     if (!$email) {
         $errors['email'] = "Merci d'indiquer une adresse mail";
+    }
+    
+    if(validemail($email) == true){
+        $errors['email'] = "Cette mail est déjà utilisée";
     }
 
     if (!$firt_name) {
@@ -37,6 +65,9 @@ if (!empty($_POST)) {
         $errors['name'] = "Merci d'indiquer un nom";
     }
 
+    if(!$checkbox){
+        $errors['checkbox'] = "Merci de choisir au moins un";
+    }
     
 
     // Si tout est OK (pas d'erreur)
@@ -56,6 +87,7 @@ if (!empty($_POST)) {
 
 // Sélection de la liste des origines
 $origins = getAllOrigins();
+$checkboxs = getAllcheckboxs();
 
 // Inclusion du template
 include 'index.phtml';

@@ -1,7 +1,7 @@
 <?php
 
 include "config.php";
-
+include "functions.php";
 
 
 $nomfichier = $argv[1];
@@ -26,12 +26,18 @@ while($row = fgetcsv($file)){
     $first_name = ucwords($row[0]);
     $name = ucwords($row[1]);
     $email = $row[2];
+    var_dump($email);
     $date = new DateTime();
-    $datefrm = $date->format('d-m-Y H:i:s');
+    $datefrm = $date->format('Y-m-d H:i:s');
 
     $email = str_replace(" ","", $email);
 
-    $pdoStatement->execute([$first_name, $name, $emai, $datefrm]);
+    if(validemail($email) != true){
+        $pdoStatement->execute([$first_name, $name, $email, $datefrm]);
+    }else{
+        echo"Cette mail est déjà dans la BDD";
+    }
+    
 }
 
 echo 'Import terminé!';

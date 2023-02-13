@@ -59,6 +59,15 @@
                         <?php endforeach; ?>
                     </select>
                 </div>
+                <div>
+                    <?php foreach($checkboxs as $checkbox): ?>
+                        <input type="checkbox" name="checkbox" value="<?= $checkbox['id']; ?>">
+                        <label for="<?= $checkbox["id"]; ?>"> <?= $checkbox["label_checkbox"]; ?> </label>
+                    <?php endforeach; ?>
+                    <?php if (isset($errors['checkbox'])) : ?>
+                        <p class="message error"><?= $errors['checkbox']; ?></p>
+                    <?php endif; ?>
+                </div>
                 
                 <input type="submit" value="Valider" class="btn">
             </fieldset>
