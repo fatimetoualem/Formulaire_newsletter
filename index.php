@@ -1,26 +1,16 @@
 <?php
 
-session_start();    
+// session_start();    
 
-if(!empty($_POST)){
-    $_SESSION["autoriser"] = "true";
-    header("location:".$_SERVER["PHP_SELF"]);
-    exit;
-}
-if(!isset($_SESSION["autoriser"])){
-    session_destroy();
-}
-
-// if (!empty($_POST)) {
-// 	$_SESSION["formulaire_envoye"] = $_POST;
-// 	header("Location: ".$_SERVER["PHP_SELF"]);
-// 	exit;
+// if(!empty($_POST)){
+//     $_SESSION["autoriser"] = "true";
+//     header("location:".$_SERVER["PHP_SELF"]);
+//     exit;
+// }
+// if(!isset($_SESSION["autoriser"])){
+//     session_destroy();
 // }
 
-// if (isset($_SESSION["formulaire_envoye"])) {
-// 	$_POST = $_SESSION["formulaire_envoye"];
-// 	unset($_SESSION["formulaire_envoye"]);
-// }
 
 // Inclusion des dépendances
 require 'config.php';
