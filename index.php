@@ -2,17 +2,17 @@
 
 session_start();    
 
-if(!empty($_POST)){
-    $_SESSION["autoriser"] = "true";
-    header("location:".$_SERVER["PHP_SELF"]);
-    
-    exit;
-}
-if(isset($_SESSION["autoriser"])){
-    session_destroy();
-    header("location:index.php");
+
+if (!empty($_POST)) {
+	$_SESSION["formulaire_envoye"] = $_POST;
+	header("Location: ".$_SERVER["PHP_SELF"]);
+	exit;
 }
 
+if (isset($_SESSION["formulaire_envoye"])) {
+	$_POST = $_SESSION["formulaire_envoye"];
+	unset($_SESSION["formulaire_envoye"]);
+}
 
 // Inclusion des dépendances
 require 'config.php';
@@ -70,6 +70,14 @@ if (!empty($_POST)) {
 
         // Message de succès
         $success  = 'Merci de votre inscription';
+
+        //La variable session pour le message de success
+        $_SESSION['message'] = $success;
+
+        //Redirection vers la page index.php
+        header('Location:index.php');
+        exit();
+
     }
 }
 

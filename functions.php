@@ -3,37 +3,26 @@
 /**
  * Récupère tous les enregistrements de la table origins
  */
-// function conexionBDD()
-// {
-//     // Construction du Data Source Name
-//     $dsn = 'mysql:dbname=' . DB_NAME . ';host=' . DB_HOST;
-
-//     // Tableau d'options pour la connexion PDO
-//     $options = [
-//         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-//         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-//     ];
-
-//     // Création de la connexion PDO (création d'un objet PDO)
-//     $pdo = new PDO($dsn, DB_USER, DB_PASSWORD, $options);
-//     $pdo->exec('SET NAMES UTF8');
-
-//     return $pdo;
-// }
-function getAllOrigins()
+function conexionBDD()
 {
-      // Construction du Data Source Name
-      $dsn = 'mysql:dbname=' . DB_NAME . ';host=' . DB_HOST;
+    // Construction du Data Source Name
+    $dsn = 'mysql:dbname=' . DB_NAME . ';host=' . DB_HOST;
 
-      // Tableau d'options pour la connexion PDO
-      $options = [
+    // Tableau d'options pour la connexion PDO
+    $options = [
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-      ];
-  
-      // Création de la connexion PDO (création d'un objet PDO)
-      $pdo = new PDO($dsn, DB_USER, DB_PASSWORD, $options);
-      $pdo->exec('SET NAMES UTF8');
+    ];
+
+    // Création de la connexion PDO (création d'un objet PDO)
+    $pdo = new PDO($dsn, DB_USER, DB_PASSWORD, $options);
+    $pdo->exec('SET NAMES UTF8');
+
+    return $pdo;
+}
+function getAllOrigins()
+{
+    $pdo = conexionBDD();
 
     $sql = 'SELECT *
             FROM origines
@@ -47,18 +36,7 @@ function getAllOrigins()
 
 function getAllcheckboxs()
 {
-     // Construction du Data Source Name
-     $dsn = 'mysql:dbname=' . DB_NAME . ';host=' . DB_HOST;
-
-     // Tableau d'options pour la connexion PDO
-     $options = [
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-     ];
- 
-     // Création de la connexion PDO (création d'un objet PDO)
-     $pdo = new PDO($dsn, DB_USER, DB_PASSWORD, $options);
-     $pdo->exec('SET NAMES UTF8');
+    $pdo = conexionBDD();
 
     $sql = 'SELECT * FROM checkbox ORDER BY label_checkbox';
      
@@ -70,18 +48,7 @@ function getAllcheckboxs()
 
 function validemail($email)
 {
-   // Construction du Data Source Name
-   $dsn = 'mysql:dbname=' . DB_NAME . ';host=' . DB_HOST;
-
-   // Tableau d'options pour la connexion PDO
-   $options = [
-       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-   ];
-
-   // Création de la connexion PDO (création d'un objet PDO)
-   $pdo = new PDO($dsn, DB_USER, DB_PASSWORD, $options);
-   $pdo->exec('SET NAMES UTF8');
+    $pdo = conexionBDD();
 
      $varifymail = $pdo->prepare("SELECT * FROM subscribers WHERE email=?");
      $varifymail->execute([$email]);
@@ -102,18 +69,7 @@ function validemail($email)
  */
 function addSubscriber(string $email, string $first_name, string $name, int $originId)
 {
-      // Construction du Data Source Name
-      $dsn = 'mysql:dbname=' . DB_NAME . ';host=' . DB_HOST;
-
-      // Tableau d'options pour la connexion PDO
-      $options = [
-          PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-          PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-      ];
-  
-      // Création de la connexion PDO (création d'un objet PDO)
-      $pdo = new PDO($dsn, DB_USER, DB_PASSWORD, $options);
-      $pdo->exec('SET NAMES UTF8');
+    $pdo = conexionBDD();
 
     // Insertion de l'email dans la table subscribers
     $sql = 'INSERT INTO subscribers
