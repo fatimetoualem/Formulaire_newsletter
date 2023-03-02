@@ -65,15 +65,12 @@
                 </div>
                 <div>
                     <?php foreach($checkboxs as $checkbox): ?>
+                       
+                        <input type="checkbox" name="checkbox[]" value="<?= $checkbox['id']; ?>" id ="<?= $checkbox['id']; ?>" <?php if(isset($_POST['checkbox']) AND in_array($checkbox['id'], $_POST['checkbox'])) { echo "checked"; }?>>
                         <label for="<?= $checkbox["id"];?>"> <?= $checkbox["label_checkbox"]; ?></label>
-                        <input type="checkbox" name="checkbox[]" value="<?= $checkbox['id']; ?>"
-
-                        <?php if (isset($_POST['checkbox']) and in_array($checkbox['id'], $_POST['checkbox']))
-                        {
-                        echo "checked";
-                        } ?>>
 
                     <?php endforeach; ?>
+                    
                     <?php if (isset($errors['checkbox'])) : ?>
                         <p class="message error"><?= $errors['checkbox']; ?></p>
                     <?php endif; ?>

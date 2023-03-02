@@ -63,6 +63,33 @@ function validemail($email)
      }
 }
 
+function addInterest($idSubscriber, $idInterest){
+
+    $pdo = conexionBDD();
+
+    $sql = 'INSERT INTO interest
+            (id_subscribers, id_checkbox) 
+            VALUES (?,?)';
+
+    $query = $pdo->prepare($sql);
+    return $query->execute([$idSubscriber, $idInterest]);
+   
+}
+
+function existInterest(int $subscriberId, int $interestId)
+{
+    $pdo = conexionBDD();
+
+    $sql = "SELECT *
+    FROM interest 
+    WHERE id_subscribers='".$subscriberId."' and id_checkbox= '".$interestId."' ";
+        
+ 
+    $query = $pdo->prepare($sql);
+    $query->execute();
+   
+    return $query->fetchAll();
+}
 
 
 /**
@@ -79,4 +106,5 @@ function addSubscriber(string $email, string $first_name, string $name, int $ori
 
     $query = $pdo->prepare($sql);
     $query->execute([$email, $first_name, $name, $originId]);
+    return $pdo->lastInsertId();
 }

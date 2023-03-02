@@ -1,7 +1,9 @@
 <?php
-
 session_start();    
 
+// Inclusion des dépendances
+require 'config.php';
+require 'functions.php';
 
 if (!empty($_POST)) {
 	$_SESSION["formulaire_envoye"] = $_POST;
@@ -14,15 +16,12 @@ if (isset($_SESSION["formulaire_envoye"])) {
 	unset($_SESSION["formulaire_envoye"]);
 }
 
-// Inclusion des dépendances
-require 'config.php';
-require 'functions.php';
-
 $errors = [];
 $success = null;
 $email = '';
 $firt_name = '';
 $name = '';
+$insert = "";
 
 // Si le formulaire a été soumis...
 if (!empty($_POST)) {
@@ -35,10 +34,13 @@ if (!empty($_POST)) {
     $name = ucwords(strtolower($name), " -");
 
     $checkbox = $_POST["checkbox"];
+   
+    // var_dump($checkbox);
 
 
     // On récupère l'origine
     $originSelected = $_POST['origin'];
+
 
     // Validation 
     if (!$email) {
@@ -61,12 +63,17 @@ if (!empty($_POST)) {
         $errors['checkbox'] = "Merci de choisir au moins un";
     }
     
-
     // Si tout est OK (pas d'erreur)
     if (empty($errors)) {
 
         // Ajout de l'email dans le fichier csv
-        addSubscriber($email, $firt_name, $name, $originSelected);
+        $subId = addSubscriber($email, $firt_name, $name, $originSelected);
+
+
+        foreach($checkbox as $i){
+            addInterest($subId , $i);
+        }
+       
 
         // Message de succès
         $success  = 'Merci de votre inscription';
