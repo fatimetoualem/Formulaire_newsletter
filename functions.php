@@ -46,6 +46,7 @@ function getAllcheckboxs()
     return $query->fetchAll();
 }
 
+
 function validemail($email)
 {
     $pdo = conexionBDD();

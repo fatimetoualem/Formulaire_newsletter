@@ -35,7 +35,7 @@ while($row = fgetcsv($file)){
     if(validemail($email) != true){
         $pdoStatement->execute([$first_name, $name, $email, $created_on]);
     }else{
-        echo"Cette mail est déjà dans la BDD";
+        echo " L'adresse ".$email." est déjà présente \n";
     }
     
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 13, 2023 at 03:29 PM
+-- Generation Time: Mar 02, 2023 at 01:15 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -37,13 +37,24 @@ CREATE TABLE `checkbox` (
 --
 
 INSERT INTO `checkbox` (`id`, `label_checkbox`) VALUES
-(1, 'Peinture'),
-(2, 'Sculpture'),
-(3, 'Photographie'),
-(4, 'Art contemporain'),
-(5, 'Films'),
-(6, 'Art numérique'),
-(7, 'Installations');
+(8, 'Peinture'),
+(9, 'Sculpture'),
+(10, 'Photographie'),
+(11, 'Art contemporain'),
+(12, 'Films'),
+(13, 'Art numérique'),
+(14, 'Installations');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `interest`
+--
+
+CREATE TABLE `interest` (
+  `id_subscribers` int NOT NULL,
+  `id_checkbox` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -85,10 +96,10 @@ CREATE TABLE `subscribers` (
 --
 
 INSERT INTO `subscribers` (`id`, `created_on`, `email`, `first_name`, `name`, `origine_id`) VALUES
-(113, '2023-02-13 15:27:55', 'alfred.dupont@gmail.com', 'Alfred', 'Dupont', NULL),
-(114, '2023-02-13 15:27:55', 'b.lav@hotmail.fr', 'Bertrand', 'Lavoisier', NULL),
-(115, '2023-02-13 15:27:55', 'SarahLAMINE@gmail.com', 'Sarah', 'LAMINE', NULL),
-(116, '2023-02-13 15:27:55', 'mo78@laposte.net', 'Mohamed', 'Ben Salam', NULL);
+(130, '2023-03-02 13:13:21', 'alfred.dupont@gmail.com', 'Alfred', 'Dupont', NULL),
+(131, '2023-03-02 13:13:21', 'b.lav@hotmail.fr', 'Bertrand', 'Lavoisier', NULL),
+(132, '2023-03-02 13:13:21', 'SarahLAMINE@gmail.com', 'Sarah', 'LAMINE', NULL),
+(133, '2023-03-02 13:13:21', 'mo78@laposte.net', 'Mohamed', 'Ben Salam', NULL);
 
 --
 -- Indexes for dumped tables
@@ -99,6 +110,13 @@ INSERT INTO `subscribers` (`id`, `created_on`, `email`, `first_name`, `name`, `o
 --
 ALTER TABLE `checkbox`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `interest`
+--
+ALTER TABLE `interest`
+  ADD KEY `subscribers_id` (`id_subscribers`),
+  ADD KEY `checkbox_id` (`id_checkbox`);
 
 --
 -- Indexes for table `origines`
@@ -121,7 +139,7 @@ ALTER TABLE `subscribers`
 -- AUTO_INCREMENT for table `checkbox`
 --
 ALTER TABLE `checkbox`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `origines`
@@ -133,11 +151,18 @@ ALTER TABLE `origines`
 -- AUTO_INCREMENT for table `subscribers`
 --
 ALTER TABLE `subscribers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `interest`
+--
+ALTER TABLE `interest`
+  ADD CONSTRAINT `checkbox_id` FOREIGN KEY (`id_checkbox`) REFERENCES `checkbox` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `subscribers_id` FOREIGN KEY (`id_subscribers`) REFERENCES `subscribers` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `subscribers`
