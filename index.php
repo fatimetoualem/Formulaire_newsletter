@@ -35,8 +35,6 @@ if (!empty($_POST)) {
 
     $checkbox = $_POST["checkbox"];
    
-    // var_dump($checkbox);
-
 
     // On récupère l'origine
     $originSelected = $_POST['origin'];
